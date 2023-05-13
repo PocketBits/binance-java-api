@@ -2,7 +2,9 @@ package com.binance.api.examples;
 
 import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiMarginRestClient;
+import com.binance.api.client.constant.BinanceApiConstants;
 import com.binance.api.client.domain.TimeInForce;
+import com.binance.api.client.domain.account.MarginInterestRate;
 import com.binance.api.client.domain.account.MarginNewOrderResponse;
 import com.binance.api.client.domain.account.NewOrderResponseType;
 import com.binance.api.client.domain.account.Order;
@@ -12,6 +14,8 @@ import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
 import com.binance.api.client.exception.BinanceApiException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.binance.api.client.domain.account.MarginNewOrder.limitBuy;
@@ -22,7 +26,7 @@ import static com.binance.api.client.domain.account.MarginNewOrder.limitBuy;
 public class MarginOrdersExample {
 
     public static void main(String[] args) {
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("API_KEY", "SECRET_KEY");
         BinanceApiMarginRestClient client = factory.newMarginRestClient();
 
         // Getting list of open orders
@@ -32,6 +36,11 @@ public class MarginOrdersExample {
         // Get status of a particular order
         Order order = client.getOrderStatus(new OrderStatusRequest("LINKETH", 751698L));
         System.out.println(order);
+
+        // Get hourly interest rate
+
+        List<MarginInterestRate> interestRates = client.getNextHourInterestRate(Arrays.asList("BTC", "ETH"), false, 4000L, System.currentTimeMillis());
+        System.out.println(interestRates);
 
         // Canceling an order
         try {

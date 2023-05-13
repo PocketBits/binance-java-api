@@ -38,6 +38,11 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
     }
 
     @Override
+    public List<MarginInterestRate> getNextHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow,  Long timestamp) {
+        return executeSync(binanceApiService.getHourInterestRate(assets, isIsolated, recvWindow, timestamp));
+    }
+
+    @Override
     public MarginNewOrderResponse newOrder(MarginNewOrder order) {
         return executeSync(binanceApiService.newMarginOrder(order.getSymbol(), order.getSide(), order.getType(),
                 order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
@@ -60,7 +65,7 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
 
     @Override
     public List<Trade> getMyTrades(String symbol) {
-        return executeSync(binanceApiService.getMyTrades(symbol, null, null,null,null, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+        return executeSync(binanceApiService.getMyTrades(symbol, null, null, null, null, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
     }
 
     // user stream endpoints
