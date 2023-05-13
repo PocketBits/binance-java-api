@@ -29,7 +29,7 @@ public interface BinanceApiMarginRestClient {
      * @param assets assets to get interest rate
      * @param isIsolated isIsolated: true for isolated margin, false for crossed margin
      */
-    List<MarginInterestRate> getHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow, Long timestamp);
+    List<MarginInterestRate> getNextHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow, Long timestamp);
 
     /**
      * Send in a new margin order.

@@ -39,7 +39,7 @@ public class MarginOrdersExample {
 
         // Get hourly interest rate
 
-        List<MarginInterestRate> interestRates = client.getHourInterestRate(Arrays.asList("BTC", "ETH"), false, 4000L, System.currentTimeMillis());
+        List<MarginInterestRate> interestRates = client.getNextHourInterestRate(Arrays.asList("BTC", "ETH"), false, 4000L, System.currentTimeMillis());
         System.out.println(interestRates);
 
         // Canceling an order

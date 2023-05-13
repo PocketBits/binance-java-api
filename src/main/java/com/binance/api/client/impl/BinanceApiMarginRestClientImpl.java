@@ -38,7 +38,7 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
     }
 
     @Override
-    public List<MarginInterestRate> getHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow,  Long timestamp) {
+    public List<MarginInterestRate> getNextHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow,  Long timestamp) {
         return executeSync(binanceApiService.getHourInterestRate(assets, isIsolated, recvWindow, timestamp));
     }
 
