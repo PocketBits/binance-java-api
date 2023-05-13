@@ -234,6 +234,10 @@ public interface BinanceApiService {
     Call<List<Order>> getOpenMarginOrders(@Query("symbol") String symbol, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @GET("/sapi/v1/margin/next-hourly-interest-rate")
+    Call<List<MarginInterestRate>> getHourInterestRate(@Query("assets") List<String> assets, @Query("isIsolated") Boolean isIsolated, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/sapi/v1/margin/order")
     Call<MarginNewOrderResponse> newMarginOrder(@Query("symbol") String symbol, @Query("side") OrderSide side, @Query("type") OrderType type,
                                                 @Query("timeInForce") TimeInForce timeInForce, @Query("quantity") String quantity,

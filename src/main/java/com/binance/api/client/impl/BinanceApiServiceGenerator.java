@@ -86,6 +86,7 @@ public class BinanceApiServiceGenerator {
     public static <T> T executeSync(Call<T> call) {
         try {
             Response<T> response = call.execute();
+            System.out.println(response);
             if (response.isSuccessful()) {
                 return response.body();
             } else {

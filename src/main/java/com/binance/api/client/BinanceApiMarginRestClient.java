@@ -22,6 +22,15 @@ public interface BinanceApiMarginRestClient {
      */
     List<Order> getOpenOrders(OrderRequest orderRequest);
 
+
+    /**
+     * Get all hourly interest rate on margin account for symbols.
+     *
+     * @param assets assets to get interest rate
+     * @param isIsolated isIsolated: true for isolated margin, false for crossed margin
+     */
+    List<MarginInterestRate> getHourInterestRate(List<String> assets, Boolean isIsolated, Long recvWindow, Long timestamp);
+
     /**
      * Send in a new margin order.
      *
