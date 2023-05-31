@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public enum FilterType {
   // Symbol
   PRICE_FILTER,
+  TRAILING_DELTA,
   LOT_SIZE,
   MIN_NOTIONAL,
   MAX_NUM_ORDERS,
