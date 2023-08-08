@@ -179,33 +179,39 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 	}
 
 	@Override
-	public List<Trade> getMyTrades(String symbol, Integer limit, Long fromId,Long startTime,Long endTime, Long recvWindow, Long timestamp) {
-		return executeSync(binanceApiService.getMyTrades(symbol, limit, fromId, startTime,endTime, recvWindow, timestamp));
+	public List<Trade> getMyTrades(String symbol, Integer limit, Long fromId,Long startTime,Long endTime, Long recvWindow, Long timestamp, Long orderId) {
+		return executeSync(binanceApiService.getMyTrades(symbol, limit, fromId, startTime,endTime, recvWindow, timestamp,
+			null));
 	}
 	
 	@Override
 	public List<Trade> getMyTrades(String symbol, Integer limit, Long startTime, Long endTime) {
         return getMyTrades(symbol,limit,null,startTime,endTime,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW,
-				System.currentTimeMillis());
+				System.currentTimeMillis(), null);
     }
 
 
 	@Override
 	public List<Trade> getMyTrades(String symbol, Integer limit) {
 		return getMyTrades(symbol, limit, null, null,null,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW,
-				System.currentTimeMillis());
+				System.currentTimeMillis(), null);
 	}
 
 	@Override
 	public List<Trade> getMyTrades(String symbol) {
 		return getMyTrades(symbol, null, null, null,null,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW,
-				System.currentTimeMillis());
+				System.currentTimeMillis(), null);
+	}
+	@Override
+	public List<Trade> getMyTradesFromOrderId(String symbol, Long orderId) {
+		return getMyTrades(symbol, null, null, null,null,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW,
+			System.currentTimeMillis(), orderId);
 	}
 
 	@Override
 	public List<Trade> getMyTrades(String symbol, Long fromId) {
 		return getMyTrades(symbol, null, fromId, null,null,BinanceApiConstants.DEFAULT_RECEIVING_WINDOW,
-				System.currentTimeMillis());
+				System.currentTimeMillis(), null);
 	}
 
 	@Override
