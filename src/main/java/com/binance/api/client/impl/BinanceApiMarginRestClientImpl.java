@@ -10,6 +10,7 @@ import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
 
 import java.util.List;
+import retrofit2.http.HEAD;
 
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.createService;
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.executeSync;
@@ -65,12 +66,16 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
 
     @Override
     public List<Trade> getMyTrades(String symbol) {
-<<<<<<< HEAD
-        return executeSync(binanceApiService.getMyTrades(symbol, null, null,null,null, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis(),
-            null));
-=======
-        return executeSync(binanceApiService.getMyTrades(symbol, null, null, null, null, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
->>>>>>> 033d565dd15cb0877dc7d3ba66068ad6d3647068
+
+        return executeSync(binanceApiService.getMyMarginTrades(symbol, null, null,  BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis(), null));
+
+    }
+
+    @Override
+    public List<Trade> getMyMarginTrades(String symbol, Long orderId) {
+
+        return executeSync(binanceApiService.getMyMarginTrades(symbol, null, null,  BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis(), orderId));
+
     }
 
     // user stream endpoints

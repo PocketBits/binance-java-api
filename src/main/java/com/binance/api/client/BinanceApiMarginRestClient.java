@@ -62,6 +62,7 @@ public interface BinanceApiMarginRestClient {
      */
     List<Trade> getMyTrades(String symbol);
 
+    List<Trade> getMyMarginTrades(String symbol, Long orderId)
     // User stream endpoints
 
     /**
