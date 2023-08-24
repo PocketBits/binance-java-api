@@ -244,7 +244,8 @@ public interface BinanceApiService {
                                                 @Query("timeInForce") TimeInForce timeInForce, @Query("quantity") String quantity,
                                                 @Query("price") String price, @Query("newClientOrderId") String newClientOrderId, @Query("stopPrice") String stopPrice,
                                                 @Query("icebergQty") String icebergQty, @Query("newOrderRespType") NewOrderResponseType newOrderRespType,
-                                                @Query("sideEffectType") SideEffectType sideEffectType, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+                                                @Query("sideEffectType") SideEffectType sideEffectType, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp,
+                                                @Query("quoteOrderQty") String quoteOrderQty);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @DELETE("/sapi/v1/margin/order")
