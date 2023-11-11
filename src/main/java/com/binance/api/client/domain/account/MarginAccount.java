@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Account information.
  */
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarginAccount {
 
   private boolean borrowEnabled;
@@ -22,6 +22,19 @@ public class MarginAccount {
 
   private String totalNetAssetOfBtc;
 
+  private String collateralMarginLevel;
+
+  public String getTotalCollateralValueInUSDT() {
+    return totalCollateralValueInUSDT;
+  }
+
+
+  public void setTotalCollateralValueInUSDT(String totalCollateralValueInUSDT) {
+    this.totalCollateralValueInUSDT = totalCollateralValueInUSDT;
+  }
+
+  private String totalCollateralValueInUSDT;
+
   public String getCollateralMarginLevel() {
     return collateralMarginLevel;
   }
@@ -30,7 +43,8 @@ public class MarginAccount {
     this.collateralMarginLevel = collateralMarginLevel;
   }
 
-  private String collateralMarginLevel;
+
+
 
   private boolean tradeEnabled;
 
