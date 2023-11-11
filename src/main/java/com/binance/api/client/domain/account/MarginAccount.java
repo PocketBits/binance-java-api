@@ -22,6 +22,16 @@ public class MarginAccount {
 
   private String totalNetAssetOfBtc;
 
+  public String getCollateralMarginLevel() {
+    return collateralMarginLevel;
+  }
+
+  public void setCollateralMarginLevel(String collateralMarginLevel) {
+    this.collateralMarginLevel = collateralMarginLevel;
+  }
+
+  private String collateralMarginLevel;
+
   private boolean tradeEnabled;
 
   private boolean transferEnabled;
@@ -116,6 +126,7 @@ public class MarginAccount {
         .append("tradeEnabled", tradeEnabled)
         .append("transferEnabled", transferEnabled)
         .append("userAssets", userAssets)
+        .append("collateralMarginLevel", collateralMarginLevel)
         .toString();
   }
 }
