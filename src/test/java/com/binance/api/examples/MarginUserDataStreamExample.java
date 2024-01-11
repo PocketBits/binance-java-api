@@ -17,7 +17,7 @@ import com.binance.api.client.domain.event.UserDataUpdateEvent.UserDataUpdateEve
 public class MarginUserDataStreamExample {
 
   public static void main(String[] args) {
-    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET",null);
     BinanceApiMarginRestClient client = factory.newMarginRestClient();
 
     // First, we obtain a listenKey which is required to interact with the user data stream

@@ -10,7 +10,7 @@ import com.binance.api.client.domain.account.Account;
 public class AccountEndpointsExampleAsync {
 
   public static void main(String[] args) {
-    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET",null);
     BinanceApiAsyncRestClient client = factory.newAsyncRestClient();
 
     // Get account balances (async)

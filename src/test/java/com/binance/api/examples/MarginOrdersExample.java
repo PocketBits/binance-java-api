@@ -26,7 +26,7 @@ import static com.binance.api.client.domain.account.MarginNewOrder.limitBuy;
 public class MarginOrdersExample {
 
     public static void main(String[] args) {
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("API_KEY", "SECRET_KEY");
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("API_KEY", "SECRET_KEY",null);
         BinanceApiMarginRestClient client = factory.newMarginRestClient();
 
         // Getting list of open orders

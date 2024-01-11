@@ -13,7 +13,7 @@ public class TotalAccountBalanceExample {
 
 
     public static void main(String[] args) {
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET",null);
         BinanceApiRestClient client = factory.newRestClient();
 
         // Get account balances

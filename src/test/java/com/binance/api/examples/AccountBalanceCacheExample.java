@@ -29,7 +29,7 @@ public class AccountBalanceCacheExample {
   private final String listenKey;
 
   public AccountBalanceCacheExample(String apiKey, String secret) {
-    this.clientFactory = BinanceApiClientFactory.newInstance(apiKey, secret);
+    this.clientFactory = BinanceApiClientFactory.newInstance(apiKey, secret,null);
     this.listenKey = initializeAssetBalanceCacheAndStreamSession();
     startAccountBalanceEventStreaming(listenKey);
   }

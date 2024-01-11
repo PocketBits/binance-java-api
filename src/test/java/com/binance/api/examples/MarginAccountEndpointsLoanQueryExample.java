@@ -12,7 +12,7 @@ import com.binance.api.client.domain.account.RepayQueryResult;
 public class MarginAccountEndpointsLoanQueryExample {
 
     public static void main(String[] args) {
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET",null);
         BinanceApiMarginRestClient client = factory.newMarginRestClient();
         MaxBorrowableQueryResult usdt = client.queryMaxBorrowable("USDT");
         System.out.println(usdt.getAmount());

@@ -17,7 +17,7 @@ import static com.binance.api.client.domain.account.NewOrder.marketBuy;
 public class OrdersExampleAsync {
 
   public static void main(String[] args) {
-    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET");
+    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("YOUR_API_KEY", "YOUR_SECRET",null);
     BinanceApiAsyncRestClient client = factory.newAsyncRestClient();
 
     // Getting list of open orders

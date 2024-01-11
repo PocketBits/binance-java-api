@@ -13,7 +13,7 @@ public class SwapEndpointExample {
 
     public static void main(String[] args) {
 
-        BinanceApiClientFactory binanceApiClientFactory = BinanceApiClientFactory.newInstance(API_KEY, SECRET_KEY);
+        BinanceApiClientFactory binanceApiClientFactory = BinanceApiClientFactory.newInstance(API_KEY, SECRET_KEY,null);
         BinanceApiSwapRestClient swapClient = binanceApiClientFactory.newSwapRestClient();
         List<Pool> pools = swapClient.listAllSwapPools();
         for(Pool pool:pools) {
