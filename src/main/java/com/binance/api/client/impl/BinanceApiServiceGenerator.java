@@ -31,48 +31,52 @@ public class BinanceApiServiceGenerator {
         dispatcher.setMaxRequestsPerHost(500);
         dispatcher.setMaxRequests(500);
         sharedClient = new OkHttpClient.Builder()
-                .dispatcher(dispatcher)
-                .pingInterval(20, TimeUnit.SECONDS)
-                .build();
+            .dispatcher(dispatcher)
+            .pingInterval(20, TimeUnit.SECONDS)
+            .build();
     }
 
     @SuppressWarnings("unchecked")
     private static final Converter<ResponseBody, BinanceApiError> errorBodyConverter =
-            (Converter<ResponseBody, BinanceApiError>)converterFactory.responseBodyConverter(
-                    BinanceApiError.class, new Annotation[0], null);
+        (Converter<ResponseBody, BinanceApiError>) converterFactory.responseBodyConverter(
+            BinanceApiError.class, new Annotation[0], null);
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null);
+        return createService(serviceClass, null, null, null);
     }
 
     /**
      * Create a Binance API service.
      *
      * @param serviceClass the type of service.
-     * @param apiKey Binance API key.
-     * @param secret Binance secret.
-     *
+     * @param apiKey       Binance API key.
+     * @param secret       Binance secret.
+     * @param baseUrl
      * @return a new implementation of the API endpoints for the Binance API service.
      */
-    public static <S> S createService(Class<S> serviceClass, String apiKey, String secret) {
-        String baseUrl = null;
-        if (!BinanceApiConfig.useTestnet) { baseUrl = BinanceApiConfig.getApiBaseUrl(); }
-        else {
-            baseUrl = /*BinanceApiConfig.useTestnetStreaming ?
+    public static <S> S createService(Class<S> serviceClass, String apiKey, String secret,
+                                      String baseUrl) {
+        if (baseUrl == null) {
+            if (!BinanceApiConfig.useTestnet) {
+                baseUrl = BinanceApiConfig.getApiBaseUrl();
+            } else {
+                baseUrl = /*BinanceApiConfig.useTestnetStreaming ?
                 BinanceApiConfig.getStreamTestNetBaseUrl() :*/
-                BinanceApiConfig.getTestNetBaseUrl();
+                    BinanceApiConfig.getTestNetBaseUrl();
+            }
         }
 
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(converterFactory);
+            .baseUrl(baseUrl)
+            .addConverterFactory(converterFactory);
 
         if (StringUtils.isEmpty(apiKey) || StringUtils.isEmpty(secret)) {
             retrofitBuilder.client(sharedClient);
         } else {
             // `adaptedClient` will use its own interceptor, but share thread pool etc with the 'parent' client
             AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey, secret);
-            OkHttpClient adaptedClient = sharedClient.newBuilder().addInterceptor(interceptor).build();
+            OkHttpClient adaptedClient =
+                sharedClient.newBuilder().addInterceptor(interceptor).build();
             retrofitBuilder.client(adaptedClient);
         }
 
@@ -100,7 +104,8 @@ public class BinanceApiServiceGenerator {
     /**
      * Extracts and converts the response error body into an object.
      */
-    public static BinanceApiError getBinanceApiError(Response<?> response) throws IOException, BinanceApiException {
+    public static BinanceApiError getBinanceApiError(Response<?> response)
+        throws IOException, BinanceApiException {
         return errorBodyConverter.convert(response.errorBody());
     }
 
