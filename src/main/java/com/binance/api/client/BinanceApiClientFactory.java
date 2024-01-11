@@ -19,15 +19,19 @@ public class BinanceApiClientFactory {
    */
   private String secret;
 
+  private String baseUrl;
+
   /**
    * Instantiates a new binance api client factory.
    *
-   * @param apiKey the API key
-   * @param secret the Secret
+   * @param apiKey  the API key
+   * @param secret  the Secret
+   * @param baseUrl
    */
-  private BinanceApiClientFactory(String apiKey, String secret) {
+  private BinanceApiClientFactory(String apiKey, String secret, String baseUrl) {
     this.apiKey = apiKey;
     this.secret = secret;
+    this.baseUrl = baseUrl;
     BinanceApiConfig.useTestnet = false;
     BinanceApiConfig.useTestnetStreaming = false;
   }
@@ -41,7 +45,7 @@ public class BinanceApiClientFactory {
    * @param useTestnetStreaming true for spot test network websocket streaming; false for no streaming.
    */
   private BinanceApiClientFactory(String apiKey, String secret, boolean useTestnet, boolean useTestnetStreaming) {
-      this(apiKey, secret);
+      this(apiKey, secret, null);
       if (useTestnet) {
         BinanceApiConfig.useTestnet = true;
         BinanceApiConfig.useTestnetStreaming = useTestnetStreaming; }
@@ -55,8 +59,8 @@ public class BinanceApiClientFactory {
    *
    * @return the binance api client factory
    */
-  public static BinanceApiClientFactory newInstance(String apiKey, String secret) {
-    return new BinanceApiClientFactory(apiKey, secret);
+  public static BinanceApiClientFactory newInstance(String apiKey, String secret, String baseUrl) {
+    return new BinanceApiClientFactory(apiKey, secret, baseUrl);
   }
 
   /**
@@ -79,7 +83,7 @@ public class BinanceApiClientFactory {
    * @return the binance api client factory
    */
   public static BinanceApiClientFactory newInstance() {
-    return new BinanceApiClientFactory(null, null);
+    return new BinanceApiClientFactory(null, null, null);
   }
 
   /**
@@ -98,28 +102,28 @@ public class BinanceApiClientFactory {
    * Creates a new synchronous/blocking REST client.
    */
   public BinanceApiRestClient newRestClient() {
-    return new BinanceApiRestClientImpl(apiKey, secret);
+    return new BinanceApiRestClientImpl(apiKey, secret, baseUrl);
   }
 
   /**
    * Creates a new asynchronous/non-blocking REST client.
    */
   public BinanceApiAsyncRestClient newAsyncRestClient() {
-    return new BinanceApiAsyncRestClientImpl(apiKey, secret);
+    return new BinanceApiAsyncRestClientImpl(apiKey, secret, baseUrl);
   }
 
   /**
    * Creates a new asynchronous/non-blocking Margin REST client.
    */
   public BinanceApiAsyncMarginRestClient newAsyncMarginRestClient() {
-    return new BinanceApiAsyncMarginRestClientImpl(apiKey, secret);
+    return new BinanceApiAsyncMarginRestClientImpl(apiKey, secret, baseUrl);
   }
 
   /**
    * Creates a new synchronous/blocking Margin REST client.
    */
   public BinanceApiMarginRestClient newMarginRestClient() {
-    return new BinanceApiMarginRestClientImpl(apiKey, secret);
+    return new BinanceApiMarginRestClientImpl(apiKey, secret, baseUrl);
   }
 
   /**
@@ -133,6 +137,6 @@ public class BinanceApiClientFactory {
    * Creates a new synchronous/blocking Swap REST client.
    */
   public BinanceApiSwapRestClient newSwapRestClient() {
-    return new BinanceApiSwapRestClientImpl(apiKey, secret);
+    return new BinanceApiSwapRestClientImpl(apiKey, secret, baseUrl);
   }
 }

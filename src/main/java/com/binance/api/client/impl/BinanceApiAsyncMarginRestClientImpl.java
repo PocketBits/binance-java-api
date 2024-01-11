@@ -22,8 +22,8 @@ public class BinanceApiAsyncMarginRestClientImpl implements BinanceApiAsyncMargi
 
     private final BinanceApiService binanceApiService;
 
-    public BinanceApiAsyncMarginRestClientImpl(String apiKey, String secret) {
-        binanceApiService = createService(BinanceApiService.class, apiKey, secret, null);
+    public BinanceApiAsyncMarginRestClientImpl(String apiKey, String secret, String baseUrl){
+        binanceApiService = createService(BinanceApiService.class, apiKey, secret, baseUrl);
     }
 
     // Margin Account endpoints

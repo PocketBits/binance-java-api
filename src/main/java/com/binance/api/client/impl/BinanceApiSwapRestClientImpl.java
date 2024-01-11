@@ -17,8 +17,8 @@ public class BinanceApiSwapRestClientImpl implements BinanceApiSwapRestClient {
 
     private final BinanceApiService binanceApiService;
 
-    public BinanceApiSwapRestClientImpl(String apiKey, String secret) {
-        binanceApiService = createService(BinanceApiService.class, apiKey, secret, null);
+    public BinanceApiSwapRestClientImpl(String apiKey, String secret, String baseUrl) {
+        binanceApiService = createService(BinanceApiService.class, apiKey, secret, baseUrl);
     }
 
     @Override
