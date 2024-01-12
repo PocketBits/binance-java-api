@@ -56,7 +56,7 @@ public class BinanceApiConfig {
 	 * Streaming API base URL.
 	 */
 	public static String getStreamApiBaseUrl() {
-		return String.format("wss://stream.%s:9443/ws", getBaseDomain());
+		return String.format("ws://18.140.43.178/socket/ws", getBaseDomain());
 	}
 
 	/**
