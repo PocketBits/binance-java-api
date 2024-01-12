@@ -49,14 +49,14 @@ public class BinanceApiConfig {
 	 * REST API base URL.
 	 */
 	public static String getApiBaseUrl() {
-		return String.format("https://api.%s", getBaseDomain());
+		return "http://18.140.43.178";
 	}
 
 	/**
 	 * Streaming API base URL.
 	 */
 	public static String getStreamApiBaseUrl() {
-		return String.format("ws://18.140.43.178/socket/ws", getBaseDomain());
+		return "ws://18.140.43.178/socket/ws";
 	}
 
 	/**
